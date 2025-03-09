@@ -1,37 +1,41 @@
 pipeline{
 
 
-agent any 
+
+agent any
 
 stages{
 
-
-stage('build')
-
-{
+stage('build'){
 
 steps{echo "this is the build job"}
 
+bat "mvn clean"
 }
+
 stage('deploy'){
-
-steps{echo "this is the deploy job"}
+step{
+echo "this is the deploy job"
+bat "mvn deploy"
+}
 
 }
+
 stage('test'){
-
-steps{echo "this is the test job"}
-
+steps{
+echo "this is the test job"
+bat "mvn test"
+}
 
 }
-stage('release'){
 
+stage('release'){
 steps{echo "this is the release job"}
 
 }
 
-
 }
+
 
 
 }
